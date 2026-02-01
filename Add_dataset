@@ -1,0 +1,68 @@
+CREATE TABLE customer(
+	customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    gender VARCHAR(10),
+	city VARCHAR(50),
+    signup_date DATE
+);
+INSERT INTO customer VALUES
+(1, 'Amit Sharma', 'Male', 'Delhi', '2023-01-10'),
+(2, 'Neha Verma', 'Female', 'Mumbai', '2023-02-15'),
+(3, 'Rohit Mehta', 'Male', 'Bangalore', '2023-03-05'),
+(4, 'Priya Singh', 'Female', 'Delhi', '2023-04-20'),
+(5, 'Ankit Jain', 'Male', 'Pune', '2023-05-12'),
+(6, 'Kavita Rao', 'Female', 'Hyderabad', '2023-05-25'),
+(7, 'Suresh Kumar', 'Male', 'Chennai', '2023-06-01'),
+(8, 'Pooja Nair', 'Female', 'Kochi', '2023-06-18'),
+(9, 'Rahul Khanna', 'Male', 'Gurgaon', '2023-07-02'),
+(10, 'Sneha Patel', 'Female', 'Ahmedabad', '2023-07-15');
+
+CREATE TABLE products(
+	product_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+	category VARCHAR(50),
+    price DECIMAL(10,2)
+);
+
+INSERT INTO products VALUES
+(101, 'Laptop', 'Electronics', 55000),
+(102, 'Smartphone', 'Electronics', 30000),
+(103, 'Office Chair', 'Furniture', 7000),
+(104, 'Headphones', 'Accessories', 2500),
+(105, 'Tablet', 'Electronics', 22000),
+(106, 'Desk Lamp', 'Furniture', 1800),
+(107, 'Smart Watch', 'Accessories', 12000),
+(108, 'Keyboard', 'Accessories', 1500);
+
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO orders VALUES
+(1001, 1, 101, 1, '2023-06-10'),
+(1002, 2, 102, 2, '2023-06-15'),
+(1003, 3, 104, 3, '2023-07-01'),
+(1004, 1, 103, 1, '2023-07-05'),
+(1005, 4, 102, 1, '2023-07-10'),
+(1006, 5, 105, 1, '2023-07-15'),
+(1007, 6, 107, 2, '2023-07-18'),
+(1008, 7, 101, 1, '2023-07-20'),
+(1009, 8, 108, 2, '2023-07-22'),
+(1010, 9, 104, 1, '2023-07-25'),
+(1011, 10, 106, 2, '2023-07-28'),
+(1012, 2, 107, 1, '2023-08-01'),
+(1013, 3, 102, 1, '2023-08-05'),
+(1014, 4, 105, 2, '2023-08-10'),
+(1015, 5, 108, 3, '2023-08-12'),
+(1016, 6, 103, 1, '2023-08-15'),
+(1017, 7, 104, 2, '2023-08-18'),
+(1018, 8, 101, 1, '2023-08-20'),
+(1019, 9, 102, 1, '2023-08-22'),
+(1020, 1, 107, 1, '2023-08-25');
