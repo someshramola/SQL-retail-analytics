@@ -1,0 +1,50 @@
+# Total_revenue_generated
+
+SELECT 
+	sum(p.price * o.quantity) AS total_revenue
+FROM orders o
+JOIN products p on o.product_id = p.product_id;
+
+# Revenue_by_product_category
+
+SELECT
+	p.category,
+    sum(p.price * o.quantity) AS category_revenue
+FROM orders o
+JOIN products p ON o.product_id = p.product_id
+GROUP BY p.category
+ORDER BY category_revenue DESC;
+
+# Top_customer_by_revenue CTE
+
+With customer_revenue AS(
+	SELECT 
+		c.customer_name,
+        sum(p.price * o.quantity) AS revenue
+	FROM orders o
+    JOIN customer c on o.customer_id = c.customer_id
+    join products p on o.product_id = p.product_id
+    GROUP BY c.customer_name
+)
+SELECT * 
+FROM customer_revenue
+ORDER BY revenue DESC;
+
+# Monthly_revenue_trend
+SELECT 
+	MONTH(order_date) AS month,
+    sum(p.price * o.quantity) AS monthly_revenue
+FROM orders o
+JOIN products p ON o.product_id= p.product_id
+GROUP BY MONTH(order_date)
+ORDER BY MONTH;
+
+#Customers_with_multiple_purchess
+
+SELECT 
+	c.customer_name,
+    COUNT(o.order_id) AS total_orders
+FROM orders o
+JOIN customer c ON o.customer_id = c.customer_id
+GROUP BY c.customer_name
+HAVING count(o.order_id) > 1;
