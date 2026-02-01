@@ -1,0 +1,13 @@
+sql-retail-analytics/
+│
+├── dataset/
+│   ├── customers.sql
+│   ├── products.sql
+│   └── orders.sql
+│
+├── queries/
+│   ├── basic_analysis.sql
+│   ├── advanced_analysis.sql
+│
+│
+└── README.md
